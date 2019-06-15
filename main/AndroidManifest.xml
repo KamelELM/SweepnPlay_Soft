@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.univers.sweepplay">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,24 +19,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning">
 
-        /* Main Activity */
-        <activity android:name=".Main_Activity.FirstActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".Main_Activity.FirstActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main_Activity.MainActivity"
-                  android:screenOrientation="portrait"/>
-
-        /* Login Activity */
-        <activity android:name=".Login.RegisterActivity"
-                  android:screenOrientation="portrait"/>
-
-        <activity android:name=".Login.LoginActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Main_Activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Device.DeviceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Device.ControllerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Device.SelectPairingModeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Device.NfcPairingActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:resource="@xml/nfc_tech_filter"/>
+            </intent-filter>
+        </activity>
     </application>
+
 </manifest>
