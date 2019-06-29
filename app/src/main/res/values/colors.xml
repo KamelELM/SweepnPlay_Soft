@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    /* menu */
+    <color name="colorBackground">#1e3d74</color>
+    <color name="colorText">#131e28</color>
+    <color name="colorTextHint">#1e4388</color>
+    <color name="colorButtonHint">#1e4d84</color>
+    <color name="colorPrimary">#A7A7A7</color>
+
+    /* game */
+    <color name="Button">#3F51B5</color>
+    <color name="Start">#215FFF</color>
+    <color name="colorPrimaryDark">#131e28</color>
+    <color name="colorAccent">#00CAA1</color>
+
+</resources>

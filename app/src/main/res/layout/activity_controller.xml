@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/png_background_600x1067"
+    tools:context="com.univers.sweepplay.Device.ControllerActivity"
+    android:theme="@android:style/Theme.NoTitleBar">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+
+        <ImageButton
+            android:id="@+id/upBtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="43dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="57dp"
+            android:background="@drawable/png_flech_200x200"
+            android:rotation="90" />
+
+
+        <ImageButton
+            android:id="@+id/downBtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="67dp"
+            android:layout_toLeftOf="@+id/start"
+            android:layout_toStartOf="@+id/start"
+            android:background="@drawable/png_flech_200x200"
+            android:rotation="270" />
+
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/upBtn"
+            android:layout_toRightOf="@+id/upBtn"
+            android:backgroundTint="@color/colorAccent"
+            android:contextClickable="true"
+            android:text="@string/start"
+            android:textColor="@android:color/background_light"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

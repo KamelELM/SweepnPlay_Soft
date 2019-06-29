@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/png_background_600x1067"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:context=".Device.NfcPairingActivity"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/looking"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/background_text"
+        android:textStyle="bold|italic"></TextView>
+
+    <TextView
+        android:id="@+id/nfc_contents"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/background_text"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+</LinearLayout>
