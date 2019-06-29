@@ -22,15 +22,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private NestedScrollView nestedScrollView;
 
-    private TextInputLayout textInputLayoutName;
-    private TextInputLayout textInputLayoutEmail;
-    private TextInputLayout textInputLayoutPassword;
-    private TextInputLayout textInputLayoutConfirmPassword;
-
-    private TextInputEditText textInputEditTextName;
+    private TextInputLayout inputName;
+    private TextInputLayout inputEmail;
+    private TextInputLayout inputPassword;
+    private TextInputLayout inputConfirmPassword ;
+    private TextInputEditText textInputName;
     private TextInputEditText textInputEditTextEmail;
     private TextInputEditText textInputEditTextPassword;
-    private TextInputEditText textInputEditTextConfirmPassword;
+    private TextInputEditText textInputConfirmPassword;
 
     private AppCompatButton appCompatButtonRegister;
     private AppCompatTextView appCompatTextViewLoginLink;
@@ -55,21 +54,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private void initViews() {
         nestedScrollView = findViewById(R.id.nestedScrollView);
-
-        textInputLayoutName = findViewById(R.id.textInputLayoutName);
-        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
-        textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
-        textInputLayoutConfirmPassword = findViewById(R.id.textInputLayoutConfirmPassword);
-
-        textInputEditTextName = findViewById(R.id.textInputEditTextName);
-        textInputEditTextEmail = findViewById(R.id.textInputEditTextEmail);
-        textInputEditTextPassword = findViewById(R.id.textInputEditTextPassword);
-        textInputEditTextConfirmPassword = findViewById(R.id.textInputEditTextConfirmPassword);
-
+        inputName = findViewById(R.id.inputName);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputPassword = findViewById(R.id.inputPassword);
+        inputConfirmPassword = findViewById(R.id.inputConfirmPassword);
+        textInputName = findViewById(R.id.textInputName);
+        textInputEditTextEmail = findViewById(R.id.textInputEmail);
+        textInputEditTextPassword = findViewById(R.id.textInputPassword);
+        textInputConfirmPassword = findViewById(R.id.textInputConfirmPassword );
         appCompatButtonRegister = findViewById(R.id.appCompatButtonRegister);
-
         appCompatTextViewLoginLink = findViewById(R.id.appCompatTextViewLoginLink);
-
     }
 
     /**
@@ -115,51 +109,39 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * This method is to validate the input text fields and post data to SQLite
      */
     private void postDataToSQLite() {
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, getString(R.string.error_message_name))) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextEmail(textInputEditTextEmail, textInputLayoutEmail, getString(R.string.error_message_email))) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))) {
-            return;
-        }
-        if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
-                textInputLayoutConfirmPassword, getString(R.string.error_password_match))) {
-            return;
-        }
+        if (!inputValidation.isInputEditTextFilled(textInputName, inputName, getString(R.string.error_message_name))) {
+            return; }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextEmail, inputEmail, getString(R.string.error_message_email))) {
+            return; }
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextEmail, inputEmail, getString(R.string.error_message_email))) {
+            return; }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, inputPassword, getString(R.string.error_message_password))) {
+            return; }
+        if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputConfirmPassword,
+                inputConfirmPassword , getString(R.string.error_password_match))) {
+            return; }
 
         if (!databaseHelper.checkUser(textInputEditTextEmail.getText().toString().trim())) {
-
-            user.setName(textInputEditTextName.getText().toString().trim());
+            user.setName(textInputName.getText().toString().trim());
             user.setEmail(textInputEditTextEmail.getText().toString().trim());
             user.setPassword(textInputEditTextPassword.getText().toString().trim());
-
             databaseHelper.addUser(user);
-
             // Snack Bar to show success message that record saved successfully
             Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
             emptyInputEditText();
-
-
         } else {
             // Snack Bar to show error message that record already exists
             Snackbar.make(nestedScrollView, getString(R.string.error_email_exists), Snackbar.LENGTH_LONG).show();
         }
-
-
     }
 
     /**
      * This method is to empty all input edit text
      */
     private void emptyInputEditText() {
-        textInputEditTextName.setText(null);
+        textInputName.setText(null);
         textInputEditTextEmail.setText(null);
         textInputEditTextPassword.setText(null);
-        textInputEditTextConfirmPassword.setText(null);
+        textInputConfirmPassword.setText(null);
     }
 }

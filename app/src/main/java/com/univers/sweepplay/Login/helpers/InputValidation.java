@@ -13,7 +13,6 @@ public class InputValidation {
 
     /**
      * constructor
-     *
      * @param context
      */
     public InputValidation(Context context) {
@@ -22,11 +21,10 @@ public class InputValidation {
 
     /**
      * method to check InputEditText filled .
-     *
      * @param textInputEditText
      * @param textInputLayout
      * @param message
-     * @return
+     * @return boolean of the status
      */
     public boolean isInputEditTextFilled(TextInputEditText textInputEditText, TextInputLayout textInputLayout, String message) {
         String value = textInputEditText.getText().toString().trim();
@@ -47,7 +45,7 @@ public class InputValidation {
      * @param textInputEditText
      * @param textInputLayout
      * @param message
-     * @return
+     * @return boolean of the status
      */
     public boolean isInputEditTextEmail(TextInputEditText textInputEditText, TextInputLayout textInputLayout, String message) {
         String value = textInputEditText.getText().toString().trim();
@@ -61,6 +59,14 @@ public class InputValidation {
         return true;
     }
 
+    /**
+     * method to check register .
+     * @param textInputEditText1
+     * @param textInputEditText2
+     * @param textInputLayout
+     * @param message
+     * @return boolean of the status
+     */
     public boolean isInputEditTextMatches(TextInputEditText textInputEditText1, TextInputEditText textInputEditText2, TextInputLayout textInputLayout, String message) {
         String value1 = textInputEditText1.getText().toString().trim();
         String value2 = textInputEditText2.getText().toString().trim();
@@ -76,7 +82,6 @@ public class InputValidation {
 
     /**
      * method to Hide keyboard
-     *
      * @param view
      */
     private void hideKeyboardFrom(View view) {

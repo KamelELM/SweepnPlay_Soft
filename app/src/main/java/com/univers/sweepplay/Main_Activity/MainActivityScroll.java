@@ -3,7 +3,6 @@ package com.univers.sweepplay.Main_Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
@@ -16,9 +15,6 @@ import com.univers.sweepplay.Login.RegisterActivity;
 import com.univers.sweepplay.R;
 
 public class MainActivityScroll extends AppCompatActivity implements View.OnClickListener {
-    private final AppCompatActivity activity = MainActivityScroll.this;
-
-    private NestedScrollView nestedScrollView;
 
     private AppCompatButton appCompatButtonRegister;
     private AppCompatButton appCompatButtonLogin;
@@ -26,6 +22,10 @@ public class MainActivityScroll extends AppCompatActivity implements View.OnClic
     private AppCompatButton appCompatButtonJoin;
     private AppCompatButton appCompatButtonSettings;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +36,11 @@ public class MainActivityScroll extends AppCompatActivity implements View.OnClic
         initListeners();
     }
 
+    /**
+     * init buttons
+     */
     private void initViews() {
-        nestedScrollView = findViewById(R.id.nestedScrollView);
+        findViewById(R.id.nestedScrollView);
 
         appCompatButtonRegister = findViewById(R.id.appCompatButtonRegister);
         appCompatButtonLogin = findViewById(R.id.appCompatButtonLogin);
@@ -46,7 +49,9 @@ public class MainActivityScroll extends AppCompatActivity implements View.OnClic
         appCompatButtonSettings = findViewById(R.id.appCompatButtonSettings);
     }
 
-
+    /**
+     * init listeners for the buttons
+     */
     private void initListeners() {
         appCompatButtonRegister.setOnClickListener(this);
         appCompatButtonLogin.setOnClickListener(this);
@@ -55,6 +60,11 @@ public class MainActivityScroll extends AppCompatActivity implements View.OnClic
         appCompatButtonSettings.setOnClickListener(this);
     }
 
+
+    /**
+     * listeners for the the main menu
+     * @param v button chosen
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

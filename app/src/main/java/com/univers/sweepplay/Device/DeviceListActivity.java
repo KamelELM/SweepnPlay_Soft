@@ -18,16 +18,16 @@ import android.widget.Toast;
 import com.univers.sweepplay.R;
 
 public class DeviceListActivity extends Activity {
-
-    // textview for connection status
-    TextView connectionStatus;
+    TextView connectionStatus;    // textview for connection status
     ListView pairedListView;
-
-    //An EXTRA to take the device MAC to the next activity
-    public static String EXTRA_DEVICE_ADDRESS;
+    public static String EXTRA_DEVICE_ADDRESS; //An EXTRA to take the device MAC to the next activity
     private BluetoothAdapter adapter;
     private ArrayAdapter<String> pairedDevicesArrayAdapter;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.device_list);
@@ -42,9 +42,13 @@ public class DeviceListActivity extends Activity {
         // Find and set up the ListView for paired devices
         pairedListView.setAdapter(pairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
-
     }
 
+    /**
+     * recreate activity
+     *
+     * connection methods are here in case program goes into the background
+     */
     public void onResume() {
         super.onResume();
         bluetoothStatus();
@@ -82,7 +86,9 @@ public class DeviceListActivity extends Activity {
         }
     };
 
-    //Ask user to turn bluetooth on
+    /**
+     * Ask user to turn bluetooth on
+     */
     private void bluetoothStatus() {
         // Check that device has Bluetooth and that it is turned on
         adapter = BluetoothAdapter.getDefaultAdapter();
@@ -90,8 +96,7 @@ public class DeviceListActivity extends Activity {
             Toast.makeText(getBaseContext(), "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            if (!adapter.isEnabled()) {
-                //Prompt user to turn on Bluetooth
+            if (!adapter.isEnabled()) {  //Prompt user to turn on Bluetooth
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, 1);
             }

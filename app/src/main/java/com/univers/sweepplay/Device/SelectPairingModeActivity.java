@@ -11,21 +11,22 @@ import android.view.View;
 import com.univers.sweepplay.R;
 
 public class SelectPairingModeActivity extends AppCompatActivity implements View.OnClickListener {
-    private final AppCompatActivity activity = SelectPairingModeActivity.this;
 
     private NfcAdapter myNfcAdapter;
     private AppCompatTextView myText;
     private AppCompatButton btn_nfc;
     private AppCompatButton btn_device_list;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_pairing_mode);
         getSupportActionBar().hide();
         initViews();
         initListeners();
-
-
         myNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
         if (myNfcAdapter == null) {
@@ -36,20 +37,31 @@ public class SelectPairingModeActivity extends AppCompatActivity implements View
         }
     }
 
+    /**
+     * listeners Views
+     */
     private void initViews() {
         myText= findViewById(R.id.myText);
         btn_nfc = findViewById(R.id.btn_nfc);
         btn_device_list = findViewById(R.id.btn_device_list);
     }
 
+    /**
+     * Init listeners
+     */
     private void initListeners() {
         myText.setOnClickListener(this);
         btn_nfc.setOnClickListener(this);
         btn_device_list.setOnClickListener(this);
     }
 
+
+    /**
+     * listeners for pairing mod
+     * @param v btn choose by the user
+     */
     @Override
-    public void onClick(View v) { // 2 buttons for
+    public void onClick(View v) { // 2 buttons for manual or easy mode pairing
         switch (v.getId()) {
             case R.id.btn_device_list:
                 Intent intent_manual = new Intent(getApplicationContext(), DeviceListActivity.class);

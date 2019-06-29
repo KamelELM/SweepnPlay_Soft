@@ -16,10 +16,11 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
 
     private List<User> listUsers;
 
-    public UsersRecyclerAdapter(List<User> listUsers) {
-        this.listUsers = listUsers;
-    }
-
+    /**
+     *  Create the view (without activity)
+     * @param parent
+     * @param viewType
+     */
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // inflating recycler item view
         View itemView = LayoutInflater.from(parent.getContext())
@@ -28,20 +29,26 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
         return new UserViewHolder(itemView);
     }
 
+    /**
+     *  Create new field
+     * @param holder
+     * @param position
+     */
     public void onBindViewHolder(UserViewHolder holder, int position) {
         holder.textViewName.setText(listUsers.get(position).getName());
         holder.textViewEmail.setText(listUsers.get(position).getEmail());
         holder.textViewPassword.setText(listUsers.get(position).getPassword());
     }
-
+    /**
+     *  add one item in the data base
+     */
     public int getItemCount() {
         Log.v(UsersRecyclerAdapter.class.getSimpleName(),""+listUsers.size());
         return listUsers.size();
     }
 
-
     /**
-     * ViewHolder class
+     * view of the data base
      */
     public class UserViewHolder extends RecyclerView.ViewHolder {
 
@@ -49,13 +56,14 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
         public AppCompatTextView textViewEmail;
         public AppCompatTextView textViewPassword;
 
+        /**
+         *  init the view (not used in snp)
+         */
         public UserViewHolder(View view) {
             super(view);
-            textViewName = (AppCompatTextView) view.findViewById(R.id.textViewName);
-            textViewEmail = (AppCompatTextView) view.findViewById(R.id.textViewEmail);
-            textViewPassword = (AppCompatTextView) view.findViewById(R.id.textViewPassword);
+            textViewName = view.findViewById(R.id.textViewName);
+            textViewEmail = view.findViewById(R.id.textViewEmail);
+            textViewPassword = view.findViewById(R.id.textViewPassword);
         }
     }
-
-
 }

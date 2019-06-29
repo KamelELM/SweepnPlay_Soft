@@ -24,14 +24,14 @@
             android:src="@drawable/png_logo_200x200" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutEmail"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@drawable/background_text">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextEmail"
+                android:id="@+id/textInputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
@@ -41,14 +41,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayoutPassword"
+            android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/background_text">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/textInputEditTextPassword"
+                android:id="@+id/textInputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
@@ -58,7 +58,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/appCompatButtonLogin"
+            android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -67,7 +67,7 @@
             android:text="@string/text_login" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textViewLinkRegister"
+            android:id="@+id/linkRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

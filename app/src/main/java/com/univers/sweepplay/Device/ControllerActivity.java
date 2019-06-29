@@ -29,11 +29,14 @@ public class ControllerActivity extends Activity{
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
     private OutputStream outStream = null;
-
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
     public String newAddress = null;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     * @return false in case of false commands
+     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class ControllerActivity extends Activity{
                     }
                 }
                 else
-                    if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
+                if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
                 { command = "0";
                     try {
                         outStream.write(command.getBytes());
@@ -86,7 +89,7 @@ public class ControllerActivity extends Activity{
                     }
                 }
                 else
-                    if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
+                if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
                 { command = "0";
                     try {
                         outStream.write(command.getBytes());
@@ -112,7 +115,7 @@ public class ControllerActivity extends Activity{
                     }
                 }
                 else
-                    if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
+                if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
                 { command = "0";
                     try {
                         outStream.write(command.getBytes());
@@ -125,16 +128,16 @@ public class ControllerActivity extends Activity{
         });
     }
 
-
+    /**
+     * recreate activity to manage control
+     * connection methods are here in case program goes into the background
+     */
     @Override
     public void onResume(){
         super.onResume();
-        // connection methods are here in case program goes into the background etc
-
         //Get MAC address from DeviceListActivity
         Intent intent = getIntent();
         newAddress = intent.getStringExtra( DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-
         BluetoothDevice device = btAdapter.getRemoteDevice(newAddress);
 
         //try to create a bluetooth socket for communication
@@ -144,8 +147,7 @@ public class ControllerActivity extends Activity{
             Toast.makeText(getBaseContext(), "ERROR - Could not create Bluetooth socket", Toast.LENGTH_SHORT).show();
         }
 
-        // Establish the connection.
-        try {
+        try { // Establish the connection.
             btSocket.connect();
         } catch (IOException e) {
             try {
@@ -155,22 +157,20 @@ public class ControllerActivity extends Activity{
             }
         }
 
-        // Create a data stream so we can talk to the device
-        try {
+        try { // Create a data stream for talk to the device
             outStream = btSocket.getOutputStream();
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "ERROR - Could not create bluetooth outstream", Toast.LENGTH_SHORT).show();
         }
-
-        //sending junk data x
-        send("x");
+        send("x"); //sending data x
     }
 
+    /**
+     * Close Bt socket to device
+     */
     @Override
     public void onPause() {
         super.onPause();
-
-        //Close BT socket to device
         try     {
             btSocket.close();
         } catch (IOException e2) {
@@ -183,7 +183,9 @@ public class ControllerActivity extends Activity{
         return  device.createRfcommSocketToServiceRecord(MY_UUID);
     }
 
-    //same as in device list activity
+    /**
+     * Ask user to turn bluetooth on
+     */
     private void bluetoothState() {
         // Check device has Bluetooth and that it is turned on
         if(btAdapter==null) {
@@ -199,7 +201,11 @@ public class ControllerActivity extends Activity{
         }
     }
 
-    // Method to send data
+    /**
+     * Method to send data
+     *
+     * @param message
+     */
     private void send(String message) {
         byte[] buffer = message.getBytes();
         try {
